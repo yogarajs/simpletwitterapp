@@ -1,11 +1,20 @@
-﻿using System;
+﻿using SimpleTwitterApp.UI.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SimpleTwitterApp.UI.Services
 {
-    public class TweetService
+    public interface ITweetService
     {
+        List<TweetModel> GetAll();
+    }
+
+    public class TweetService : ITweetService
+    {
+        public List<TweetModel> GetAll()
+        {
+            ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
+            var tweetModel = twitterApiRestClient.GetAll<List<TweetModel>>();
+            return tweetModel;
+        }
     }
 }

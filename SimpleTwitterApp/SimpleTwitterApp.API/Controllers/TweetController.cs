@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using SimpleTwitterApp.API.Repositories;
 using System.Web.Http;
 
 namespace SimpleTwitterApp.API.Controllers
@@ -11,7 +7,9 @@ namespace SimpleTwitterApp.API.Controllers
     {
         public IHttpActionResult Get()
         {
-            return Ok();
+            ITweetRepository tweetRepository = new TweetRepository();
+            var tweets = tweetRepository.GetAll();
+            return Ok(tweets);
         }
     }
 }

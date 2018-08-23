@@ -1,0 +1,19 @@
+﻿@model List<SimpleTwitterApp.UI.Models.TweetModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<section>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <label>@item.TweetId</label>
+            </li>
+        }
+    </ul>
+</section>
+
