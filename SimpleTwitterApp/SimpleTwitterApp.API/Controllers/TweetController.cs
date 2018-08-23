@@ -9,5 +9,9 @@ namespace SimpleTwitterApp.API.Controllers
 {
     public class TweetController : ApiController
     {
+        public IHttpActionResult Get()
+        {
+            return Ok();
+        }
     }
 }
