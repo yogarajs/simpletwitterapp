@@ -1,19 +1,15 @@
-﻿@model List<SimpleTwitterApp.UI.Models.TweetModel>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+﻿@model SimpleTwitterApp.UI.Models.TweetCompositeViewModel
 
 <section>
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>
-                <label>@item.TweetId</label>
-            </li>
-        }
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                @Html.Partial("~/Views/Tweet/Tweets.cshtml", Model.Tweets)
+            </div>
+            <div class="col-md-5">
+                @Html.Partial("~/Views/Tweet/Users.cshtml", Model.Users)
+            </div>
+        </div>
+    </div>
 </section>
 

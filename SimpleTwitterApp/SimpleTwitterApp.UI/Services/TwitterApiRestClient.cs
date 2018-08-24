@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Web;
 using Newtonsoft.Json;
 using RestSharp;
@@ -10,7 +9,7 @@ namespace SimpleTwitterApp.UI.Services
     {
         void AddTweet<T>(T model);
 
-        T GetAll<T>();
+        T GetAll<T>(string endPoint);
     }
 
     public class TwitterApiRestClient : ITwitterApiRestClient
@@ -19,7 +18,8 @@ namespace SimpleTwitterApp.UI.Services
 
         public TwitterApiRestClient()
         {
-            mRestClient = new RestClient(ConfigurationManager.AppSettings["Twitter_API_Url"]);
+            IApiConfigService apiConfigService = new ApiConfigService();
+            mRestClient = new RestClient(apiConfigService.TwitterApiUrl);
         }
 
         public void AddTweet<T>(T model)
@@ -27,9 +27,9 @@ namespace SimpleTwitterApp.UI.Services
             throw new NotImplementedException();
         }
 
-        public T GetAll<T>()
+        public T GetAll<T>(string endPoint)
         {
-            var request = new RestRequest("/tweet", Method.GET) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest(endPoint, Method.GET) { RequestFormat = DataFormat.Json };
             var response = mRestClient.Execute(request);
             T responseEntity = default(T);
 

@@ -1,4 +1,5 @@
-﻿using SimpleTwitterApp.UI.Services;
+﻿using SimpleTwitterApp.UI.Models;
+using SimpleTwitterApp.UI.Services;
 using System.Web.Mvc;
 
 namespace SimpleTwitterApp.UI.Controllers
@@ -9,7 +10,17 @@ namespace SimpleTwitterApp.UI.Controllers
         {
             ITweetService tweetService = new TweetService();
             var tweets = tweetService.GetAll();
-            return View(tweets);
+
+            IUserService userService = new UserService();
+            var users = userService.GetAll();
+
+            var tweetCompositeViewModel = new TweetCompositeViewModel()
+            {
+                Tweets = tweets,
+                Users = users
+            };
+
+            return View(tweetCompositeViewModel);
         }
     }
 }

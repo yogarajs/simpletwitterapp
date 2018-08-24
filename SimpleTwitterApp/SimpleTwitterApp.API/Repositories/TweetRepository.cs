@@ -1,11 +1,16 @@
 ﻿using SimpleTwitterApp.API.Models;
 using System.Collections.Generic;
+using System;
 
 namespace SimpleTwitterApp.API.Repositories
 {
     public interface ITweetRepository
     {
         List<TweetModel> GetAll();
+
+        List<TweetModel> GetAllByUser(int userId);
+
+        void Save(TweetModel tweetModel);
     }
 
     public class TweetRepository : ITweetRepository
@@ -20,9 +25,19 @@ namespace SimpleTwitterApp.API.Repositories
                 },
                 new TweetModel()
                 {
-                    TweetId = 12
+                    TweetId = 2
                 }
             };
+        }
+
+        public List<TweetModel> GetAllByUser(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save(TweetModel tweetModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

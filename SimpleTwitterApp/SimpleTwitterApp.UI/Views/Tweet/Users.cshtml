@@ -1,0 +1,13 @@
+﻿@model List<SimpleTwitterApp.UI.Models.UserModel>
+
+<h2>Users</h2>
+
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <div class="list-group-item">
+            <label>@item.UserId</label>
+        </div>
+    }
+</div>
+

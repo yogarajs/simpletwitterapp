@@ -124,13 +124,16 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Contexts\TweetContext.cs" />
     <Compile Include="Controllers\TweetController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\TweetEntity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\TweetModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TweetRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace SimpleTwitterApp.UI.Services
 {
-    public interface ITweetService
+    public interface IUserService
     {
-        List<TweetModel> GetAll();
+        List<UserModel> GetAll();
     }
 
-    public class TweetService : ITweetService
+    public class UserService : IUserService
     {
-        public List<TweetModel> GetAll()
+        public List<UserModel> GetAll()
         {
             ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
             IApiConfigService apiConfigService = new ApiConfigService();
-            var tweetModel = twitterApiRestClient.GetAll<List<TweetModel>>(apiConfigService.TweesGetAllEndPoint);
-            return tweetModel;
+            var userModel = twitterApiRestClient.GetAll<List<UserModel>>(apiConfigService.UsersGetAllEndPoint);
+            return userModel;
         }
     }
 }
