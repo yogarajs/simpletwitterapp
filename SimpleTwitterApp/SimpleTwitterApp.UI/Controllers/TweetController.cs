@@ -6,13 +6,20 @@ namespace SimpleTwitterApp.UI.Controllers
 {
     public class TweetController : Controller
     {
+        ITweetService _tweetService;
+        IUserService _userService;
+
+        public TweetController()
+        {
+            _tweetService = new TweetService();
+            _userService = new UserService();
+        }
+
         public ActionResult Index()
         {
-            ITweetService tweetService = new TweetService();
-            var tweets = tweetService.GetAll();
+            var tweets = _tweetService.GetAll();
 
-            IUserService userService = new UserService();
-            var users = userService.GetAll();
+            var users = _userService.GetAll();
 
             var tweetCompositeViewModel = new TweetCompositeViewModel()
             {
@@ -34,8 +41,7 @@ namespace SimpleTwitterApp.UI.Controllers
 
         public ActionResult Post(TweetModel tweetModel)
         {
-            ITweetService tweetService = new TweetService();
-            tweetService.Save(tweetModel);
+            _tweetService.Save(tweetModel);
             return RedirectToAction("Index", "Tweet");
         }
     }

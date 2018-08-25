@@ -7,24 +7,28 @@ namespace SimpleTwitterApp.API.Controllers
 {
     public class TweetController : ApiController
     {
+        ITweetRepository _tweetRepository;
+
+        public TweetController()
+        {
+            _tweetRepository = new TweetRepository();
+        }
+
         public IHttpActionResult GetAll()
         {
-            ITweetRepository tweetRepository = new TweetRepository();
-            var tweets = tweetRepository.GetAll();
+            var tweets = _tweetRepository.GetAll();
             return Ok(tweets);
         }
 
         public IHttpActionResult GetAllByUser(int userId)
         {
-            ITweetRepository tweetRepository = new TweetRepository();
-            var tweets = tweetRepository.GetAllByUser(userId);
+            var tweets = _tweetRepository.GetAllByUser(userId);
             return Ok(tweets);
         }
 
         public IHttpActionResult Post(TweetModel tweetModel)
         {
-            ITweetRepository tweetRepository = new TweetRepository();
-            tweetRepository.Save(tweetModel);
+            _tweetRepository.Save(tweetModel);
             return StatusCode(HttpStatusCode.Created);
         }
     }

@@ -10,11 +10,18 @@ namespace SimpleTwitterApp.UI.Services
 
     public class UserService : IUserService
     {
+        ITwitterApiRestClient _twitterApiRestClient;
+        IApiConfigService _apiConfigService;
+
+        public UserService()
+        {
+            _twitterApiRestClient = new TwitterApiRestClient();
+            _apiConfigService = new ApiConfigService();
+        }
+
         public List<UserModel> GetAll()
         {
-            ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
-            IApiConfigService apiConfigService = new ApiConfigService();
-            var userModel = twitterApiRestClient.GetAll<List<UserModel>>(apiConfigService.UsersGetAllEndPoint);
+            var userModel = _twitterApiRestClient.GetAll<List<UserModel>>(_apiConfigService.UsersGetAllEndPoint);
             return userModel;
         }
     }

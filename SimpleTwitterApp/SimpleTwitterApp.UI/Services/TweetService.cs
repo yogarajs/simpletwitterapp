@@ -12,19 +12,24 @@ namespace SimpleTwitterApp.UI.Services
 
     public class TweetService : ITweetService
     {
+        ITwitterApiRestClient _twitterApiRestClient;
+        IApiConfigService _apiConfigService;
+
+        public TweetService()
+        {
+            _twitterApiRestClient = new TwitterApiRestClient();
+            _apiConfigService = new ApiConfigService();
+        }
+
         public List<TweetModel> GetAll()
         {
-            ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
-            IApiConfigService apiConfigService = new ApiConfigService();
-            var tweetModel = twitterApiRestClient.GetAll<List<TweetModel>>(apiConfigService.TweetsEndPoint);
+            var tweetModel = _twitterApiRestClient.GetAll<List<TweetModel>>(_apiConfigService.TweetsEndPoint);
             return tweetModel;
         }
 
         public void Save(TweetModel tweetModel)
         {
-            ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
-            IApiConfigService apiConfigService = new ApiConfigService();
-            twitterApiRestClient.Save(tweetModel, apiConfigService.TweetsEndPoint);
+            _twitterApiRestClient.Save(tweetModel, _apiConfigService.TweetsEndPoint);
         }
     }
 }

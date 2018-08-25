@@ -10,6 +10,11 @@ namespace SimpleTwitterApp.API.Repositories
 
     public class UserRepository : IUserRepository
     {
+        public UserRepository()
+        {
+
+        }
+
         public List<UserModel> GetAll()
         {
             return new List<UserModel>()

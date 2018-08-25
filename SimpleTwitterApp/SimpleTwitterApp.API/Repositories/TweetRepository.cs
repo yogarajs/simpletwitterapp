@@ -15,6 +15,11 @@ namespace SimpleTwitterApp.API.Repositories
 
     public class TweetRepository : ITweetRepository
     {
+        public TweetRepository()
+        {
+
+        }
+
         public List<TweetModel> GetAll()
         {
             return new List<TweetModel>()
