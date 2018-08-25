@@ -10,6 +10,8 @@ namespace SimpleTwitterApp.UI.Services
         void Save<T>(T model, string endPoint);
 
         T GetAll<T>(string endPoint);
+
+        T Get<T>(string endPoint);
     }
 
     public class TwitterApiRestClient : ITwitterApiRestClient
@@ -25,6 +27,9 @@ namespace SimpleTwitterApp.UI.Services
         public void Save<T>(T model, string endPoint)
         {
             var request = new RestRequest(endPoint, Method.POST) { RequestFormat = DataFormat.Json };
+            request.AddHeader("Authorization", "true");
+            request.AddHeader("Content-Type", "application/json");
+
             var response = mRestClient.Execute(request);
             T responseEntity = default(T);
 
@@ -39,6 +44,23 @@ namespace SimpleTwitterApp.UI.Services
         }
 
         public T GetAll<T>(string endPoint)
+        {
+            var request = new RestRequest(endPoint, Method.GET) { RequestFormat = DataFormat.Json };
+            var response = mRestClient.Execute(request);
+            T responseEntity = default(T);
+
+            if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
+            {
+                responseEntity = JsonConvert.DeserializeObject<T>(response.Content);
+            }
+            else
+            {
+                throw new HttpException((int)response.StatusCode, response.ErrorMessage);
+            }
+            return responseEntity;
+        }
+
+        public T Get<T>(string endPoint)
         {
             var request = new RestRequest(endPoint, Method.GET) { RequestFormat = DataFormat.Json };
             var response = mRestClient.Execute(request);

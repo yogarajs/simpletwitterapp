@@ -5,6 +5,8 @@ namespace SimpleTwitterApp.UI.Services
 {
     public interface IUserService
     {
+        bool ValidateUser(string username, string password);
+
         List<UserModel> GetAll();
     }
 
@@ -23,6 +25,13 @@ namespace SimpleTwitterApp.UI.Services
         {
             var userModel = _twitterApiRestClient.GetAll<List<UserModel>>(_apiConfigService.UsersGetAllEndPoint);
             return userModel;
+        }
+
+        public bool ValidateUser(string username, string password)
+        {
+            return true;
+            //var isValidUser = _twitterApiRestClient.Get<bool>(_apiConfigService.UsersGetAllEndPoint);
+            //return isValidUser;
         }
     }
 }

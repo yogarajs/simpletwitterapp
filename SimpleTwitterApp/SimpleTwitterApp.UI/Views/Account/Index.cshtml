@@ -1,0 +1,19 @@
+﻿@model SimpleTwitterApp.UI.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <form method="post" action="@Url.Action("Login", "Account")">
+                @Html.TextBoxFor(m => m.Username)
+                @Html.PasswordFor(m => m.Password)
+                <button class="btn-success" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</section>

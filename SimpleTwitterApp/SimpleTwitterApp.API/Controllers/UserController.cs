@@ -17,5 +17,11 @@ namespace SimpleTwitterApp.API.Controllers
             var users = _userRepository.GetAll();
             return Ok(users);
         }
+
+        public IHttpActionResult Get()
+        {
+            var users = _userRepository.GetAll();
+            return Ok(users);
+        }
     }
 }

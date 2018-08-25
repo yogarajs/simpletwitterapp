@@ -1,9 +1,11 @@
-﻿using SimpleTwitterApp.UI.Models;
+﻿using SimpleTwitterApp.UI.Filters;
+using SimpleTwitterApp.UI.Models;
 using SimpleTwitterApp.UI.Services;
 using System.Web.Mvc;
 
 namespace SimpleTwitterApp.UI.Controllers
 {
+    [AppAuthorizationFilter]
     public class TweetController : Controller
     {
         ITweetService _tweetService;

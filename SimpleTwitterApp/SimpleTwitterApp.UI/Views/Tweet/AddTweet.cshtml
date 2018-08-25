@@ -6,8 +6,16 @@
 
 <h2>AddTweet</h2>
 
-<form method="post" action="@Url.Action("Post", "Tweet")">
-    @Html.HiddenFor(m => m.UserId)
-    @Html.TextAreaFor(m => m.TweetContent)
-    <button type="submit">Add Tweet</button>
-</form>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <form method="post" action="@Url.Action("Post", "Tweet")">
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.TextAreaFor(m => m.TweetContent)
+                    <button class="btn-success" type="submit">Add Tweet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
