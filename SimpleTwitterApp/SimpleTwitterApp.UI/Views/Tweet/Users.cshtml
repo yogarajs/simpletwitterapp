@@ -6,7 +6,12 @@
     @foreach (var item in Model)
     {
         <div class="list-group-item">
-            <label>@item.UserId</label>
+            <div class="list-group-item-heading">
+                <a href="@Url.Action("AddTweet", "Tweet", new { userId = item.UserId })">@item.UserId</a>
+            </div>
+            <div class="list-group-item-text">@item.FirstName</div>
+            <div class="list-group-item-text">@item.MiddleName</div>
+            <div class="list-group-item-text">@item.LastName</div>
         </div>
     }
 </div>

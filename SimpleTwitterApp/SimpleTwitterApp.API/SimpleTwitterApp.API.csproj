@@ -126,6 +126,7 @@
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\TweetEntity.cs" />
+    <Compile Include="Enums\UserDeviceType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

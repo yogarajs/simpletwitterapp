@@ -23,11 +23,20 @@ namespace SimpleTwitterApp.UI.Controllers
             return View(tweetCompositeViewModel);
         }
 
+        public ActionResult AddTweet(int userId)
+        {
+            var tweetModel = new TweetModel()
+            {
+                UserId = userId
+            };
+            return View(tweetModel);
+        }
+
         public ActionResult Post(TweetModel tweetModel)
         {
             ITweetService tweetService = new TweetService();
             tweetService.Save(tweetModel);
-            return RedirectToAction("Index", nameof(TweetController));
+            return RedirectToAction("Index", "Tweet");
         }
     }
 }

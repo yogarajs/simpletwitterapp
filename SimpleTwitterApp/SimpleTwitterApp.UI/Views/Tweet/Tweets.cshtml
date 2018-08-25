@@ -6,7 +6,8 @@
     @foreach (var item in Model)
     {
         <div class="list-group-item">
-            <label>@item.TweetId</label>
+            <div class="list-group-item-heading">@item.TweetContent</div>
+            <div class="list-group-item-text">@item.TweetTime</div>
         </div>
     }
 </div>

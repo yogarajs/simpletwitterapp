@@ -16,11 +16,17 @@ namespace SimpleTwitterApp.API.Repositories
             {
                 new UserModel()
                 {
-                    UserId = 11
+                    UserId = 11,
+                    FirstName = "FN",
+                    MiddleName = "MN",
+                    LastName = "LN"
                 },
                 new UserModel()
                 {
-                    UserId = 12
+                    UserId = 12,
+                    FirstName = "FN",
+                    MiddleName = "MN",
+                    LastName = "LN"
                 }
             };
         }

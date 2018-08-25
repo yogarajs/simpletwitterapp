@@ -1,0 +1,13 @@
+﻿@model SimpleTwitterApp.UI.Models.TweetModel
+
+@{
+    ViewBag.Title = "AddTweet";
+}
+
+<h2>AddTweet</h2>
+
+<form method="post" action="@Url.Action("Post", "Tweet")">
+    @Html.HiddenFor(m => m.UserId)
+    @Html.TextAreaFor(m => m.TweetContent)
+    <button type="submit">Add Tweet</button>
+</form>
