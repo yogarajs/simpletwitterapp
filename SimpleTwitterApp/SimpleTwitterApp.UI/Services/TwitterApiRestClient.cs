@@ -7,7 +7,7 @@ namespace SimpleTwitterApp.UI.Services
 {
     public interface ITwitterApiRestClient
     {
-        void AddTweet<T>(T model);
+        void Save<T>(T model, string endPoint);
 
         T GetAll<T>(string endPoint);
     }
@@ -22,9 +22,20 @@ namespace SimpleTwitterApp.UI.Services
             mRestClient = new RestClient(apiConfigService.TwitterApiUrl);
         }
 
-        public void AddTweet<T>(T model)
+        public void Save<T>(T model, string endPoint)
         {
-            throw new NotImplementedException();
+            var request = new RestRequest(endPoint, Method.POST) { RequestFormat = DataFormat.Json };
+            var response = mRestClient.Execute(request);
+            T responseEntity = default(T);
+
+            if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
+            {
+                responseEntity = JsonConvert.DeserializeObject<T>(response.Content);
+            }
+            else
+            {
+                throw new HttpException((int)response.StatusCode, response.ErrorMessage);
+            }
         }
 
         public T GetAll<T>(string endPoint)

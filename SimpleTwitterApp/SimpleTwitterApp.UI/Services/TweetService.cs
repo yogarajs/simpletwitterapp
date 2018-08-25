@@ -6,6 +6,8 @@ namespace SimpleTwitterApp.UI.Services
     public interface ITweetService
     {
         List<TweetModel> GetAll();
+
+        void Save(TweetModel tweetModel);
     }
 
     public class TweetService : ITweetService
@@ -14,8 +16,15 @@ namespace SimpleTwitterApp.UI.Services
         {
             ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
             IApiConfigService apiConfigService = new ApiConfigService();
-            var tweetModel = twitterApiRestClient.GetAll<List<TweetModel>>(apiConfigService.TweesGetAllEndPoint);
+            var tweetModel = twitterApiRestClient.GetAll<List<TweetModel>>(apiConfigService.TweetsEndPoint);
             return tweetModel;
+        }
+
+        public void Save(TweetModel tweetModel)
+        {
+            ITwitterApiRestClient twitterApiRestClient = new TwitterApiRestClient();
+            IApiConfigService apiConfigService = new ApiConfigService();
+            twitterApiRestClient.Save(tweetModel, apiConfigService.TweetsEndPoint);
         }
     }
 }

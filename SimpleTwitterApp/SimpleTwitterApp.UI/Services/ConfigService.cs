@@ -6,7 +6,7 @@ namespace SimpleTwitterApp.UI.Services
     {
         string TwitterApiUrl { get; }
 
-        string TweesGetAllEndPoint { get; }
+        string TweetsEndPoint { get; }
 
         string UsersGetAllEndPoint { get; }
     }
@@ -21,7 +21,7 @@ namespace SimpleTwitterApp.UI.Services
             }
         }
 
-        public string TweesGetAllEndPoint
+        public string TweetsEndPoint
         {
             get
             {
