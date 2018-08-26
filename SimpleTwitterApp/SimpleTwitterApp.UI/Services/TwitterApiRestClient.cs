@@ -27,8 +27,12 @@ namespace SimpleTwitterApp.UI.Services
         public void Save<T>(T model, string endPoint)
         {
             var request = new RestRequest(endPoint, Method.POST) { RequestFormat = DataFormat.Json };
+            var requestBody = JsonConvert.SerializeObject(model);
+
             request.AddHeader("Authorization", "true");
             request.AddHeader("Content-Type", "application/json");
+            request.RequestFormat = DataFormat.Json;
+            request.AddParameter("application/Json", requestBody, ParameterType.RequestBody);
 
             var response = mRestClient.Execute(request);
             T responseEntity = default(T);

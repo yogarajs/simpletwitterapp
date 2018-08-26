@@ -7,11 +7,13 @@
     {
         <div class="list-group-item">
             <div class="list-group-item-heading">
-                <a href="@Url.Action("AddTweet", "Tweet", new { userId = item.UserId })">@item.UserId</a>
+                <a href="@Url.Action("AddTweet", "Tweet", new { username = item.Username })">@item.Username</a>
             </div>
-            <div class="list-group-item-text">@item.FirstName</div>
-            <div class="list-group-item-text">@item.MiddleName</div>
-            <div class="list-group-item-text">@item.LastName</div>
+            <div class="row">
+                <div class="list-group-item-text">@item.FirstName</div>
+                <div class="list-group-item-text">@item.MiddleName</div>
+                <div class="list-group-item-text">@item.LastName</div>
+            </div>
         </div>
     }
 </div>

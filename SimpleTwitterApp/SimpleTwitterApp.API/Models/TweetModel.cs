@@ -1,18 +1,24 @@
-﻿using System;
+﻿using SimpleTwitterApp.API.Enums;
+using System;
 
 namespace SimpleTwitterApp.API.Models
 {
     public class TweetModel
     {
+        public TweetModel()
+        {
+            UserDeviceTypeId = UserDeviceType.Desktop;
+        }
+
         public int TweetId { get; set; }
 
         public string TweetContent { get; set; }
 
-        public int UserId { get; set; }
+        public string Username { get; set; }
 
-        public int UserDeviceId { get; set; }
+        public UserDeviceType UserDeviceTypeId { get; set; }
 
-        public int TwittedBy { get; set; }
+        public string TwittedBy { get; set; }
 
         public DateTime TweetTime { get; set; }
     }

@@ -1,20 +1,29 @@
-﻿@model SimpleTwitterApp.UI.Models.TweetModel
+﻿@model SimpleTwitterApp.UI.Models.AddTweetCompositeViewModel
 
 @{
-    ViewBag.Title = "AddTweet";
+    ViewBag.Title = "Add Tweet";
 }
 
-<h2>AddTweet</h2>
+<h2>Add Tweet</h2>
 
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-7">
                 <form method="post" action="@Url.Action("Post", "Tweet")">
-                    @Html.HiddenFor(m => m.UserId)
-                    @Html.TextAreaFor(m => m.TweetContent)
-                    <button class="btn-success" type="submit">Add Tweet</button>
+                    <div class="row">
+                        @Html.HiddenFor(m => m.TweetModel.Username)
+                        @Html.HiddenFor(m => m.TweetModel.TwittedBy)
+                        @Html.TextAreaFor(m => m.TweetModel.TweetContent)
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <button class="btn-success" type="submit">Submit</button>
+                    </div>
                 </form>
+            </div>
+            <div class="col-md-5">
+                @Html.Partial("~/Views/Tweet/UserTweets.cshtml", Model.MyTweets)
             </div>
         </div>
     </div>

@@ -1,12 +1,19 @@
 ﻿@model SimpleTwitterApp.UI.Models.TweetCompositeViewModel
 
+@{
+    ViewBag.Title = "Simple Twitter";
+}
+
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-4">
                 @Html.Partial("~/Views/Tweet/Tweets.cshtml", Model.Tweets)
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
+                @Html.Partial("~/Views/Tweet/UserTweets.cshtml", Model.MyTweets)
+            </div>
+            <div class="col-md-4">
                 @Html.Partial("~/Views/Tweet/Users.cshtml", Model.Users)
             </div>
         </div>

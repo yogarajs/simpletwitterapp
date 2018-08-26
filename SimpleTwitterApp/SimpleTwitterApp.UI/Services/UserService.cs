@@ -29,9 +29,9 @@ namespace SimpleTwitterApp.UI.Services
 
         public bool ValidateUser(string username, string password)
         {
-            return true;
-            //var isValidUser = _twitterApiRestClient.Get<bool>(_apiConfigService.UsersGetAllEndPoint);
-            //return isValidUser;
+            var endpoint = $"{ _apiConfigService.UsersGetByUsernameEndPoint}{username}";
+            var user = _twitterApiRestClient.Get<UserModel>(endpoint);
+            return user != null && user.Password == password;
         }
     }
 }

@@ -14,11 +14,11 @@ namespace SimpleTwitterApp.UI.Models
 
         public string TweetContent { get; set; }
 
-        public int UserId { get; set; }
+        public string Username { get; set; }
 
         public UserDeviceType UserDeviceTypeId { get; set; }
 
-        public int TwittedBy { get; set; }
+        public string TwittedBy { get; set; }
 
         public DateTime TweetTime { get; set; }
     }

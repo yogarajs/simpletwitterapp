@@ -5,8 +5,9 @@ using System.Web;
 
 namespace SimpleTwitterApp.UI.Constants
 {
-    internal static class AppConstants
+    public static class AppConstants
     {
-        internal const string USER_SESSION = "UserSession";
+        public const string USER_SESSION = "UserSession";
+        public const string ERROR_MESSAGE = "ErrorMessage";
     }
 }

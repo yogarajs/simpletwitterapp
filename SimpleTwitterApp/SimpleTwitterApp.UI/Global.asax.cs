@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using SimpleTwitterApp.UI.App_Start;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace SimpleTwitterApp.UI
@@ -9,6 +10,7 @@ namespace SimpleTwitterApp.UI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

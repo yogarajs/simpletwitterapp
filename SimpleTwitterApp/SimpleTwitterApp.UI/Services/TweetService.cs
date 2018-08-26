@@ -7,6 +7,8 @@ namespace SimpleTwitterApp.UI.Services
     {
         List<TweetModel> GetAll();
 
+        List<TweetModel> GetAllByUserName(string username);
+
         void Save(TweetModel tweetModel);
     }
 
@@ -24,6 +26,13 @@ namespace SimpleTwitterApp.UI.Services
         public List<TweetModel> GetAll()
         {
             var tweetModel = _twitterApiRestClient.GetAll<List<TweetModel>>(_apiConfigService.TweetsEndPoint);
+            return tweetModel;
+        }
+
+        public List<TweetModel> GetAllByUserName(string username)
+        {
+            var endpoint = $"{ _apiConfigService.TweetsGetAllByUsernameEndPoint}{username}";
+            var tweetModel = _twitterApiRestClient.GetAll<List<TweetModel>>(endpoint);
             return tweetModel;
         }
 

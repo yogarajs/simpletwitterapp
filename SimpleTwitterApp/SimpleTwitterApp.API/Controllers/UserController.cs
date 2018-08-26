@@ -22,8 +22,8 @@ namespace SimpleTwitterApp.API.Controllers
         [Route("api/users/{userName}")]
         public IHttpActionResult Get(string userName)
         {
-            var users = _userRepository.GetByUserName(userName);
-            return Ok(users);
+            var user = _userRepository.GetByUserName(userName);
+            return Ok(user);
         }
     }
 }

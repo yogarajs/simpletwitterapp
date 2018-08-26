@@ -1,5 +1,6 @@
 ﻿using SimpleTwitterApp.API.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleTwitterApp.API.Repositories
 {
@@ -12,6 +13,26 @@ namespace SimpleTwitterApp.API.Repositories
 
     public class UserRepository : IUserRepository
     {
+        static readonly List<UserModel> users = new List<UserModel>()
+        {
+                new UserModel()
+                {
+                    Username = "yogarajs",
+                    Password = "4113",
+                    FirstName = "FN",
+                    MiddleName = "MN",
+                    LastName = "LN"
+                },
+                new UserModel()
+                {
+                    Username = "rajans",
+                    Password = "4113",
+                    FirstName = "FN",
+                    MiddleName = "MN",
+                    LastName = "LN"
+                }
+        };
+
         public UserRepository()
         {
 
@@ -19,34 +40,12 @@ namespace SimpleTwitterApp.API.Repositories
 
         public List<UserModel> GetAll()
         {
-            return new List<UserModel>()
-            {
-                new UserModel()
-                {
-                    UserId = 11,
-                    FirstName = "FN",
-                    MiddleName = "MN",
-                    LastName = "LN"
-                },
-                new UserModel()
-                {
-                    UserId = 12,
-                    FirstName = "FN",
-                    MiddleName = "MN",
-                    LastName = "LN"
-                }
-            };
+            return users;
         }
 
         public UserModel GetByUserName(string userName)
         {
-            return new UserModel()
-            {
-                UserId = 11,
-                FirstName = "FN",
-                MiddleName = "MN",
-                LastName = "LN"
-            };
+            return users.FirstOrDefault(x => x.Username == userName);
         }
     }
 }

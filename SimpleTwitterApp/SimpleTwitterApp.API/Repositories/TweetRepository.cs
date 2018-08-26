@@ -1,6 +1,7 @@
 ﻿using SimpleTwitterApp.API.Models;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace SimpleTwitterApp.API.Repositories
 {
@@ -8,13 +9,33 @@ namespace SimpleTwitterApp.API.Repositories
     {
         List<TweetModel> GetAll();
 
-        List<TweetModel> GetAllByUser(int userId);
+        List<TweetModel> GetAllByUsername(string username);
 
         void Save(TweetModel tweetModel);
     }
 
     public class TweetRepository : ITweetRepository
     {
+        static readonly List<TweetModel> tweets = new List<TweetModel>()
+        {
+            new TweetModel()
+                {
+                    TweetId = 1,
+                    TweetContent = "Sample tweet",
+                    Username = "rajans",
+                    TwittedBy = "yogarajs",
+                    TweetTime = DateTime.Now
+                },
+                new TweetModel()
+                {
+                    TweetId = 2,
+                    TweetContent = "Sample tweet",
+                    Username = "rajans",
+                    TwittedBy = "yogarajs",
+                    TweetTime = DateTime.Now
+                }
+        };
+
         public TweetRepository()
         {
 
@@ -22,27 +43,18 @@ namespace SimpleTwitterApp.API.Repositories
 
         public List<TweetModel> GetAll()
         {
-            return new List<TweetModel>()
-            {
-                new TweetModel()
-                {
-                    TweetId = 1
-                },
-                new TweetModel()
-                {
-                    TweetId = 2
-                }
-            };
+            return tweets;
         }
 
-        public List<TweetModel> GetAllByUser(int userId)
+        public List<TweetModel> GetAllByUsername(string username)
         {
-            throw new NotImplementedException();
+            return tweets.Where(x => x.Username == username).ToList();
         }
 
         public void Save(TweetModel tweetModel)
         {
-            throw new NotImplementedException();
+            tweetModel.TweetTime = DateTime.Now;
+            tweets.Add(tweetModel);
         }
     }
 }

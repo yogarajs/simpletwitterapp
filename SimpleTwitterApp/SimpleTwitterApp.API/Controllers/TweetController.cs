@@ -14,19 +14,23 @@ namespace SimpleTwitterApp.API.Controllers
             _tweetRepository = new TweetRepository();
         }
 
+        [Route("api/tweets")]
         public IHttpActionResult GetAll()
         {
             var tweets = _tweetRepository.GetAll();
             return Ok(tweets);
         }
 
-        public IHttpActionResult GetAllByUser(int userId)
+        [Route("api/tweets/{userName}")]
+        public IHttpActionResult GetAllByUsername(string userName)
         {
-            var tweets = _tweetRepository.GetAllByUser(userId);
+            var tweets = _tweetRepository.GetAllByUsername(userName);
             return Ok(tweets);
         }
 
-        public IHttpActionResult Post(TweetModel tweetModel)
+        [HttpPost]
+        [Route("api/tweets")]
+        public IHttpActionResult Post([FromBody]TweetModel tweetModel)
         {
             _tweetRepository.Save(tweetModel);
             return StatusCode(HttpStatusCode.Created);
