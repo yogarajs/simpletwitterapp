@@ -23,8 +23,8 @@ namespace SimpleTwitterApp.UI.Services
 
         public List<UserModel> GetAll()
         {
-            var userModel = _twitterApiRestClient.GetAll<List<UserModel>>(_apiConfigService.UsersGetAllEndPoint);
-            return userModel;
+            var userModels = _twitterApiRestClient.GetAll<List<UserModel>>(_apiConfigService.UsersGetAllEndPoint);
+            return userModels;
         }
 
         public bool ValidateUser(string username, string password)

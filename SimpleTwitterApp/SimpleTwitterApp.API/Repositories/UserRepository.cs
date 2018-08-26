@@ -1,4 +1,5 @@
-﻿using SimpleTwitterApp.API.Models;
+﻿using SimpleTwitterApp.API.Contexts;
+using SimpleTwitterApp.API.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,19 +34,41 @@ namespace SimpleTwitterApp.API.Repositories
                 }
         };
 
+        readonly ITweetContext _tweetContext;
+
         public UserRepository()
         {
-
+            _tweetContext = new TweetContext();
         }
 
         public List<UserModel> GetAll()
         {
-            return users;
+            var users = from user in _tweetContext.Users
+                        select new UserModel()
+                        {
+                            Username = user.Username,
+                            FirstName = user.FirstName,
+                            MiddleName = user.MiddleName,
+                            LastName = user.LastName
+                        };
+
+            return users.ToList();
         }
 
         public UserModel GetByUserName(string userName)
         {
-            return users.FirstOrDefault(x => x.Username == userName);
+            var userModel = from user in _tweetContext.Users
+                            where user.Username == userName
+                            select new UserModel()
+                            {
+                                Username = user.Username,
+                                FirstName = user.FirstName,
+                                MiddleName = user.MiddleName,
+                                LastName = user.LastName,
+                                Password = user.Password
+                            };
+
+            return userModel.FirstOrDefault();
         }
     }
 }

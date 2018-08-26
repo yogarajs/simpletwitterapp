@@ -41,7 +41,7 @@ namespace SimpleTwitterApp.API.Contexts
             modelBuilder.Entity<TweetEntity>().Property(x => x.UserId).HasColumnName("user_id");
             modelBuilder.Entity<TweetEntity>().Property(x => x.UserDeviceId).HasColumnName("user_device_id");
             modelBuilder.Entity<TweetEntity>().Property(x => x.TweetContent).HasColumnName("tweet_content");
-            modelBuilder.Entity<TweetEntity>().Property(x => x.TwittedBy).HasColumnName("tweeted_by");
+            modelBuilder.Entity<TweetEntity>().Property(x => x.TwittedBy).HasColumnName("twitted_by");
             modelBuilder.Entity<TweetEntity>().Property(x => x.TweetTime).HasColumnName("tweet_time");
 
             modelBuilder.Entity<UserEntity>().Map(x => x.ToTable("user"))

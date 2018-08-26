@@ -10,7 +10,7 @@ namespace SimpleTwitterApp.API.Models
             UserDeviceTypeId = UserDeviceType.Desktop;
         }
 
-        public int TweetId { get; set; }
+        public long TweetId { get; set; }
 
         public string TweetContent { get; set; }
 

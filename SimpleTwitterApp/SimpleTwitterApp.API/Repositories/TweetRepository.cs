@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using SimpleTwitterApp.API.Contexts;
 using SimpleTwitterApp.API.Enums;
+using SimpleTwitterApp.API.Entities;
 
 namespace SimpleTwitterApp.API.Repositories
 {
@@ -38,7 +39,7 @@ namespace SimpleTwitterApp.API.Repositories
                 }
         };
 
-        ITweetContext _tweetContext;
+        readonly ITweetContext _tweetContext;
 
         public TweetRepository()
         {
@@ -86,6 +87,18 @@ namespace SimpleTwitterApp.API.Repositories
 
         public void Save(TweetModel tweetModel)
         {
+            var userId = _tweetContext.Users.Where(x => x.Username == tweetModel.Username).Select(x => x.UserId).FirstOrDefault();
+            var twittedBy = _tweetContext.Users.Where(x => x.Username == tweetModel.TwittedBy).Select(x => x.UserId).FirstOrDefault();
+            var userDeviceId = _tweetContext.UserDevices.Where(x => x.UserId == twittedBy).Select(x => x.UserDeviceId).FirstOrDefault();
+
+            var tweetEntity = new TweetEntity()
+            {
+                TweetContent = tweetModel.TweetContent,
+                TwittedBy = twittedBy,
+                UserId = userId,
+                UserDeviceId = userDeviceId,
+                TweetTime = DateTime.Now
+            };
             tweetModel.TweetTime = DateTime.Now;
             tweets.Add(tweetModel);
         }
