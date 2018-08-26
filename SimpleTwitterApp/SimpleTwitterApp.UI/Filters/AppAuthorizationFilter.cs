@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleTwitterApp.UI.Constants;
+using System;
 using System.Web;
 using System.Web.Mvc;
 
@@ -6,8 +7,6 @@ namespace SimpleTwitterApp.UI.Filters
 {
     public class AppAuthorizationFilter : ActionFilterAttribute, IAuthorizationFilter
     {
-        const string USER_SESSION = "UserSession";
-
         public void OnAuthorization(AuthorizationContext filterContext)
         {
             if (!IsUserAuthenticated(filterContext.HttpContext))
@@ -23,7 +22,7 @@ namespace SimpleTwitterApp.UI.Filters
             {
                 if (httpContext != null &&
                     httpContext.Session != null &&
-                    httpContext.Session[USER_SESSION] != null )
+                    httpContext.Session[AppConstants.USER_SESSION] != null )
                 {
                     return true;
                 }

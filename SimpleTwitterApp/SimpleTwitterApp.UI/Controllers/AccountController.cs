@@ -1,4 +1,5 @@
-﻿using SimpleTwitterApp.UI.Models;
+﻿using SimpleTwitterApp.UI.Constants;
+using SimpleTwitterApp.UI.Models;
 using SimpleTwitterApp.UI.Services;
 using System.Web.Mvc;
 
@@ -23,6 +24,7 @@ namespace SimpleTwitterApp.UI.Controllers
             var isValidUser = _userService.ValidateUser(loginModel.Username, loginModel.Password);
             if (isValidUser)
             {
+                Session[AppConstants.USER_SESSION] = "HasAuthenticatedUser";
                 return RedirectToAction("Index", "Tweet");
             }
             return RedirectToAction("Index");
