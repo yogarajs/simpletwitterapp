@@ -12,6 +12,7 @@
             <form method="post" action="@Url.Action("Login", "Account")">
                 @Html.TextBoxFor(m => m.Username)
                 @Html.PasswordFor(m => m.Password)
+                <div class="clearfix"></div>
                 <button class="btn-success" type="submit">Login</button>
             </form>
         </div>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using SimpleTwitterApp.API.Contexts;
+using SimpleTwitterApp.API.Enums;
 
 namespace SimpleTwitterApp.API.Repositories
 {
@@ -36,19 +38,50 @@ namespace SimpleTwitterApp.API.Repositories
                 }
         };
 
+        ITweetContext _tweetContext;
+
         public TweetRepository()
         {
-
+            _tweetContext = new TweetContext();
         }
 
         public List<TweetModel> GetAll()
         {
-            return tweets;
+            var tweets = from tweet in _tweetContext.Tweets
+                         join user in _tweetContext.Users on tweet.UserId equals user.UserId
+                         join twittedBy in _tweetContext.Users on tweet.TwittedBy equals twittedBy.UserId
+                         join userDevice in _tweetContext.UserDevices on tweet.UserDeviceId equals userDevice.UserDeviceId
+                         select new TweetModel()
+                         {
+                             TweetId = tweet.TweetId,
+                             TweetContent = tweet.TweetContent,
+                             TweetTime = tweet.TweetTime,
+                             Username = user.Username,
+                             TwittedBy = twittedBy.Username,
+                             UserDeviceTypeId = (UserDeviceType)userDevice.DeviceTypeId
+                         };
+
+            return tweets.ToList();
         }
 
         public List<TweetModel> GetAllByUsername(string username)
         {
-            return tweets.Where(x => x.Username == username).ToList();
+            var userTweets = from user in _tweetContext.Users
+                             join tweet in _tweetContext.Tweets on user.UserId equals tweet.UserId
+                             join twittedBy in _tweetContext.Users on tweet.TwittedBy equals twittedBy.UserId
+                             join userDevice in _tweetContext.UserDevices on tweet.UserDeviceId equals userDevice.UserDeviceId
+                             where user.Username == username
+                             select new TweetModel()
+                             {
+                                 TweetId = tweet.TweetId,
+                                 TweetContent = tweet.TweetContent,
+                                 TweetTime = tweet.TweetTime,
+                                 Username = user.Username,
+                                 TwittedBy = twittedBy.Username,
+                                 UserDeviceTypeId = (UserDeviceType)userDevice.DeviceTypeId
+                             };
+
+            return userTweets.ToList();
         }
 
         public void Save(TweetModel tweetModel)

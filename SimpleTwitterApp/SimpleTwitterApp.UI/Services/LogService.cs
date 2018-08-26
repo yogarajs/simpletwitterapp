@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SimpleTwitterApp.UI.Services
+﻿namespace SimpleTwitterApp.UI.Services
 {
     public interface ILogService
     {
