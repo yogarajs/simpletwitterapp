@@ -2,9 +2,10 @@
 (
 	[tweet_id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [user_id] BIGINT NOT NULL, 
-    [user_device_id] INT NOT NULL, 
+    [user_device_id] BIGINT NOT NULL, 
     [tweet_content] NVARCHAR(50) NOT NULL, 
-    [twitted_by] BIGINT NOT NULL
+    [twitted_by] BIGINT NOT NULL,
+    [tweet_time] DATETIME NOT NULL DEFAULT GETDATE()
 )
 GO
 

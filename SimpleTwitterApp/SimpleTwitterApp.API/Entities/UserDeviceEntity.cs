@@ -2,9 +2,9 @@
 {
     public class UserDeviceEntity
     {
-        public int UserDeviceId { get; set; }
+        public long UserDeviceId { get; set; }
 
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         public int DeviceTypeId { get; set; }
 

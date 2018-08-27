@@ -14,6 +14,8 @@ namespace SimpleTwitterApp.API.Contexts
         DbSet<UserDeviceEntity> UserDevices { get; set; }
 
         DbSet<DeviceTypeEntity> DeviceTypes { get; set; }
+
+        int SaveChanges();
     }
 
     public class TweetContext : DbContext, ITweetContext

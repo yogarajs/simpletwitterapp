@@ -89,7 +89,22 @@ namespace SimpleTwitterApp.API.Repositories
         {
             var userId = _tweetContext.Users.Where(x => x.Username == tweetModel.Username).Select(x => x.UserId).FirstOrDefault();
             var twittedBy = _tweetContext.Users.Where(x => x.Username == tweetModel.TwittedBy).Select(x => x.UserId).FirstOrDefault();
+
+            // TODO: User device should come from UI/Client once user logs in to the APP.
             var userDeviceId = _tweetContext.UserDevices.Where(x => x.UserId == twittedBy).Select(x => x.UserDeviceId).FirstOrDefault();
+            
+            // user tweets from new device
+            if (userDeviceId == 0)
+            {
+                UserDeviceEntity userDeviceEntity = new UserDeviceEntity()
+                {
+                    UserId = userId,
+                    DeviceName = "Test device", // TODO: Pass device name from UI/Client
+                    DeviceTypeId = (int)UserDeviceType.Desktop, // TODO: Pass device type from UI/Client
+                };
+                _tweetContext.UserDevices.Add(userDeviceEntity);
+                _tweetContext.SaveChanges();
+            }
 
             var tweetEntity = new TweetEntity()
             {
@@ -99,8 +114,9 @@ namespace SimpleTwitterApp.API.Repositories
                 UserDeviceId = userDeviceId,
                 TweetTime = DateTime.Now
             };
-            tweetModel.TweetTime = DateTime.Now;
-            tweets.Add(tweetModel);
+
+            _tweetContext.Tweets.Add(tweetEntity);
+            _tweetContext.SaveChanges();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[user_device]
 (
-	[user_device_id] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[user_device_id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [user_id] BIGINT NOT NULL, 
     [device_type_id] INT NOT NULL, 
     [device_name] NVARCHAR(50) NOT NULL

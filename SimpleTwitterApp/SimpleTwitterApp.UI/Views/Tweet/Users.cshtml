@@ -10,9 +10,7 @@
                 <a href="@Url.Action("AddTweet", "Tweet", new { username = item.Username })">@item.Username</a>
             </div>
             <div class="row">
-                <div class="list-group-item-text">@item.FirstName</div>
-                <div class="list-group-item-text">@item.MiddleName</div>
-                <div class="list-group-item-text">@item.LastName</div>
+                <div class="list-group-item-text">@item.FullName</div>
             </div>
         </div>
     }

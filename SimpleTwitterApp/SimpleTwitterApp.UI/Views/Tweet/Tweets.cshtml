@@ -1,7 +1,5 @@
 ﻿@model List<SimpleTwitterApp.UI.Models.TweetModel>
 
-<h2>Tweets</h2>
-
 <div class="list-group">
     @foreach (var item in Model)
     {
@@ -10,12 +8,8 @@
                 <div class="list-group-item-heading">@item.TweetContent</div>
             </div>
             <div class="row">
-                <div class="col">
-                    <div class="list-group-item-text">@item.TwittedBy</div>
-                </div>
-                <div class="col">
-                    <div class="list-group-item-text">@item.TweetTime</div>
-                </div>
+                <div class="list-group-item-text">@item.TwittedBy</div>
+                <div class="list-group-item-text">@item.TweetTime</div>
             </div>
         </div>
     }

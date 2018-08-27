@@ -23,6 +23,7 @@
                 </form>
             </div>
             <div class="col-md-5">
+                <h2>@Model.TweetModel.Username tweets</h2>
                 @Html.Partial("~/Views/Tweet/UserTweets.cshtml", Model.MyTweets)
             </div>
         </div>
