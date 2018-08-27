@@ -5,34 +5,67 @@ using System.Data.Entity;
 
 namespace SimpleTwitterApp.API.Contexts
 {
+    /// <summary>
+    /// Tweet context interface.
+    /// </summary>
     public interface ITweetContext : IDisposable
     {
+        /// <summary>
+        /// Gets or sets Tweets
+        /// </summary>
         DbSet<TweetEntity> Tweets { get; set; }
 
+        /// <summary>
+        /// Gets or sets Users
+        /// </summary>
         DbSet<UserEntity> Users { get; set; }
 
+        /// <summary>
+        /// Gets or sets UserDevices
+        /// </summary>
         DbSet<UserDeviceEntity> UserDevices { get; set; }
 
+        /// <summary>
+        /// Gets or sets DeviceTypes
+        /// </summary>
         DbSet<DeviceTypeEntity> DeviceTypes { get; set; }
 
+        /// <summary>
+        /// Saves all changes made in this context to the underlying database.
+        /// </summary>
+        /// <returns></returns>
         int SaveChanges();
     }
 
+    /// <summary>
+    /// Tweet context class.
+    /// </summary>
     public class TweetContext : DbContext, ITweetContext
     {
+        /// <summary>
+        /// TweetContext constructor
+        /// </summary>
         public TweetContext()
             : base("name=SimpleTwitterContext")
         {
         }
 
+        /// <inheritdoc select="*" />
         public DbSet<TweetEntity> Tweets { get; set; }
 
+        /// <inheritdoc select="*" />
         public DbSet<UserEntity> Users { get; set; }
 
+        /// <inheritdoc select="*" />
         public DbSet<UserDeviceEntity> UserDevices { get; set; }
 
+        /// <inheritdoc select="*" />
         public DbSet<DeviceTypeEntity> DeviceTypes { get; set; }
 
+        /// <summary>
+        /// OnModelCreating
+        /// </summary>
+        /// <param name="modelBuilder">The builder that defines the model for the context being created.</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TweetEntity>().Map(x => x.ToTable("tweet"))
